@@ -1,0 +1,358 @@
+/*
+Theme Name: Basketball Northland
+Theme URI: https://northland.basketball
+Author: Basketball Northland
+Description: Custom WordPress theme for Basketball Northland.
+Version: 1.0.0
+Text Domain: basketball-northland
+*/
+
+:root {
+  --bn-blue: #0b1f3b;
+  --bn-blue-2: #132d57;
+  --bn-white: #ffffff;
+  --bn-gray-1: #f4f6f9;
+  --bn-gray-2: #d9e0ea;
+  --bn-gray-3: #9aa7b8;
+  --bn-accent: #f7b500;
+  --bn-accent-2: #ff7a00;
+  --bn-shadow: 0 12px 30px rgba(9, 19, 40, 0.18);
+  --bn-radius: 16px;
+  --bn-radius-soft: 8px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--bn-blue);
+  background: radial-gradient(circle at 20% 20%, #e7eef8 0%, #ffffff 50%, #eef2f8 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.bn-container {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+}
+
+.bn-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(7, 18, 36, 0.98);
+  color: var(--bn-white);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bn-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  gap: 24px;
+}
+
+.bn-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.bn-logo img {
+  max-height: 48px;
+}
+
+.custom-logo-link {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bn-white);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.custom-logo {
+  max-height: 56px;
+  width: auto;
+}
+
+.bn-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.bn-nav li {
+  list-style: none;
+}
+
+.bn-nav a {
+  color: var(--bn-white);
+  opacity: 0.88;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.bn-nav a:hover,
+.bn-nav .current-menu-item > a {
+  opacity: 1;
+  color: var(--bn-accent);
+}
+
+.bn-hero {
+  padding: 90px 0 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bn-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  align-items: center;
+}
+
+.bn-hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(42px, 7vw, 78px);
+  color: var(--bn-blue);
+  margin: 0 0 12px;
+  letter-spacing: 1.4px;
+}
+
+.bn-hero p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0 0 20px;
+  color: #22304a;
+}
+
+.bn-hero-card {
+  background: var(--bn-white);
+  padding: 26px;
+  border-radius: var(--bn-radius);
+  box-shadow: var(--bn-shadow);
+  display: grid;
+  gap: 16px;
+  border: 1px solid rgba(11, 31, 59, 0.12);
+}
+
+.bn-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 6px;
+  background: linear-gradient(130deg, var(--bn-blue), #0f2e5a);
+  color: var(--bn-white);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-size: 14px;
+}
+
+.bn-button.bn-accent {
+  background: linear-gradient(120deg, var(--bn-accent), var(--bn-accent-2));
+  color: #1a1a1a;
+}
+
+.bn-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(11, 31, 59, 0.25);
+}
+
+.bn-section {
+  padding: 70px 0;
+}
+
+.bn-section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  letter-spacing: 1.4px;
+  margin: 0 0 16px;
+}
+
+.bn-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.bn-card {
+  background: var(--bn-white);
+  border-radius: var(--bn-radius);
+  padding: 22px;
+  border: 1px solid rgba(11, 31, 59, 0.08);
+  min-height: 160px;
+  box-shadow: 0 10px 26px rgba(11, 31, 59, 0.1);
+}
+
+.bn-card h3 {
+  margin-top: 0;
+}
+
+.bn-strip {
+  background: linear-gradient(120deg, var(--bn-blue), #183b74);
+  color: var(--bn-white);
+}
+
+.bn-strip .bn-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+
+.bn-news-list {
+  display: grid;
+  gap: 16px;
+}
+
+.bn-news-item {
+  background: var(--bn-white);
+  border-radius: var(--bn-radius);
+  padding: 18px 20px;
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(11, 31, 59, 0.08);
+}
+
+.bn-footer {
+  background: var(--bn-blue);
+  color: var(--bn-white);
+  padding: 50px 0;
+  margin-top: 40px;
+}
+
+.bn-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.bn-footer h4 {
+  margin: 0 0 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+}
+
+.bn-footer a {
+  color: var(--bn-white);
+  opacity: 0.8;
+}
+
+.bn-footer a:hover {
+  opacity: 1;
+  color: var(--bn-accent);
+}
+
+.bn-page {
+  padding: 70px 0;
+}
+
+.bn-page h1,
+.bn-page h2,
+.bn-page h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+}
+
+.bn-two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.bn-placeholder {
+  background: var(--bn-gray-1);
+  border-radius: var(--bn-radius-soft);
+  padding: 18px;
+  border: 1px dashed var(--bn-gray-2);
+  color: var(--bn-gray-3);
+}
+
+.bn-hero::after {
+  content: '';
+  position: absolute;
+  right: -10%;
+  top: -30%;
+  width: 55%;
+  height: 120%;
+  background: linear-gradient(140deg, rgba(11, 31, 59, 0.08), rgba(247, 181, 0, 0.12));
+  transform: skewX(-10deg);
+  z-index: -1;
+}
+
+.bn-quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.bn-quick-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: var(--bn-white);
+  border: 1px solid rgba(11, 31, 59, 0.12);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  font-size: 13px;
+}
+
+.bn-quick-links a:hover {
+  border-color: var(--bn-accent);
+  color: var(--bn-blue);
+}
+
+.bn-partners {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+}
+
+.bn-partner-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .bn-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bn-nav {
+    gap: 10px 14px;
+  }
+}
