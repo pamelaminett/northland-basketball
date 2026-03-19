@@ -1,0 +1,429 @@
+[
+  {
+    "_id": "siteSettings",
+    "_type": "siteSettings",
+    "title": "Site Settings",
+    "navigation": [
+      {"_key": "nav-about", "label": "About", "href": "/about/our-story"},
+      {"_key": "nav-programmes", "label": "Programmes", "href": "/programmes/kiwi-hoops"},
+      {"_key": "nav-competitions", "label": "Competitions", "href": "/competitions/secondary-school-competition"},
+      {"_key": "nav-reps", "label": "Reps", "href": "/reps/pathways"},
+      {"_key": "nav-coaches", "label": "Coaches & Refs", "href": "/coaches-refs/become-a-coach"},
+      {"_key": "nav-news", "label": "News", "href": "/news"},
+      {"_key": "nav-resources", "label": "Resources", "href": "/resources/faqs"},
+      {"_key": "nav-contact", "label": "Contact", "href": "/contact/key-contacts"}
+    ],
+    "socialLinks": [
+      {"_key": "social-email", "label": "Email", "href": "mailto:hello@northlandbasketball.org.nz"},
+      {"_key": "social-facebook", "label": "Facebook", "href": "https://facebook.com"},
+      {"_key": "social-instagram", "label": "Instagram", "href": "https://instagram.com"}
+    ],
+    "footerLinks": [
+      {"_key": "footer-policies", "label": "Policies", "href": "/resources/policies-procedures"},
+      {"_key": "footer-sitemap", "label": "Site Map", "href": "/resources/faqs"},
+      {"_key": "footer-contact", "label": "Contact Us", "href": "/contact/key-contacts"}
+    ],
+    "address": [
+      {
+        "_key": "address-block",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "address-span",
+            "_type": "span",
+            "text": "Northland Basketball, 37 Proctor Road, Poroti, Whangarei"
+          }
+        ]
+      }
+    ],
+    "sponsors": [
+      {"_key": "sponsor-foundation-north", "name": "Foundation North", "href": "https://www.foundationnorth.org.nz/"},
+      {"_key": "sponsor-basketball-nz", "name": "Basketball NZ", "href": "https://basketball.org.nz/"}
+    ]
+  },
+  {
+    "_id": "homePage",
+    "_type": "homePage",
+    "title": "Homepage",
+    "heroHeading": "We Are The North",
+    "programmesHeading": "Play Basketball at Every Level",
+    "programmesBody": [
+      {
+        "_key": "home-body-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "home-body-1-span",
+            "_type": "span",
+            "text": "Northland Basketball is built by and for our people. Stretching from Te Hana in the south to Cape Reinga in the north, our clubs, programmes, and competitions are powered by volunteers, whanau, coaches, and players who care deeply about creating opportunities close to home."
+          }
+        ]
+      },
+      {
+        "_key": "home-body-2",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "home-body-2-span",
+            "_type": "span",
+            "text": "We believe basketball should be accessible, welcoming, and connected to the communities it represents. From first steps on the court to representative pathways, we are working to lift every level of the game across the region."
+          }
+        ]
+      }
+    ],
+    "programmeCards": [
+      {"_key": "programme-kiwihoops", "title": "KiwiHoops (Youth)", "href": "/programmes/kiwi-hoops", "featured": true},
+      {"_key": "programme-school", "title": "School Programmes and Competitions", "href": "/competitions/secondary-school-competition"},
+      {"_key": "programme-adult", "title": "Adult Basketball", "href": "/programmes/adult-basketball"},
+      {"_key": "programme-women", "title": "Girls and Women", "href": "/programmes/girls-and-women"},
+      {"_key": "programme-3x3", "title": "3x3", "href": "/programmes/3x3"},
+      {"_key": "programme-reps", "title": "Representative Pathways", "href": "/reps/pathways"}
+    ],
+    "statement": "As The, Game Rises, So Do We",
+    "latestHeading": "The Latest"
+  },
+  {
+    "_id": "page.about-our-story",
+    "_type": "page",
+    "title": "Our Story",
+    "section": "about",
+    "slug": {"_type": "slug", "current": "our-story"},
+    "excerpt": "Northland Basketball exists to grow the game across every part of the region.",
+    "body": [
+      {
+        "_key": "about-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "about-span-1",
+            "_type": "span",
+            "text": "Northland Basketball connects clubs, schools, players, coaches, referees, and communities across the region. Our role is to create strong local opportunities while building pathways into regional and national basketball."
+          }
+        ]
+      },
+      {
+        "_key": "about-block-2",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "about-span-2",
+            "_type": "span",
+            "text": "We are committed to making the game accessible, inclusive, and sustainable across Northland, from grassroots programmes through to representative development."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.programmes-kiwi-hoops",
+    "_type": "page",
+    "title": "KiwiHoops",
+    "section": "programmes",
+    "slug": {"_type": "slug", "current": "kiwi-hoops"},
+    "excerpt": "Grassroots basketball experiences for tamariki and rangatahi across Northland.",
+    "body": [
+      {
+        "_key": "kiwi-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "kiwi-span-1",
+            "_type": "span",
+            "text": "KiwiHoops introduces young players to basketball through fun, age-appropriate sessions that build confidence, movement skills, and a love of the game."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.programmes-adult-basketball",
+    "_type": "page",
+    "title": "Adult Basketball",
+    "section": "programmes",
+    "slug": {"_type": "slug", "current": "adult-basketball"},
+    "excerpt": "Social and competitive opportunities for adult players around the region.",
+    "body": [
+      {
+        "_key": "adult-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "adult-span-1",
+            "_type": "span",
+            "text": "Adult basketball provides ongoing opportunities to stay active, compete, and stay connected with the game through club and community competitions."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.programmes-girls-and-women",
+    "_type": "page",
+    "title": "Girls and Women",
+    "section": "programmes",
+    "slug": {"_type": "slug", "current": "girls-and-women"},
+    "excerpt": "Programmes and pathways designed to support girls and women in basketball.",
+    "body": [
+      {
+        "_key": "women-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "women-span-1",
+            "_type": "span",
+            "text": "Northland Basketball is committed to growing participation, leadership, and visibility for girls and women through targeted development opportunities and welcoming competition environments."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.programmes-3x3",
+    "_type": "page",
+    "title": "3x3",
+    "section": "programmes",
+    "slug": {"_type": "slug", "current": "3x3"},
+    "excerpt": "Fast, skill-focused formats that bring basketball into schools and communities.",
+    "body": [
+      {
+        "_key": "3x3-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "3x3-span-1",
+            "_type": "span",
+            "text": "3x3 events create flexible, high-energy playing opportunities that are easy to activate in schools, tournaments, and community spaces."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.competitions-secondary-school-competition",
+    "_type": "page",
+    "title": "Secondary School Competition",
+    "section": "competitions",
+    "slug": {"_type": "slug", "current": "secondary-school-competition"},
+    "excerpt": "Competition structures that support school teams across Northland.",
+    "body": [
+      {
+        "_key": "comp-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "comp-span-1",
+            "_type": "span",
+            "text": "Our secondary school competitions create regular opportunities for players and schools to compete, develop, and represent their communities."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.reps-pathways",
+    "_type": "page",
+    "title": "Representative Pathways",
+    "section": "reps",
+    "slug": {"_type": "slug", "current": "pathways"},
+    "excerpt": "Clear development routes from local basketball into representative opportunities.",
+    "body": [
+      {
+        "_key": "reps-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "reps-span-1",
+            "_type": "span",
+            "text": "Representative pathways help players understand what comes next, with transparent trial, selection, and development processes that connect Northland talent to higher levels of the game."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.coaches-refs-become-a-coach",
+    "_type": "page",
+    "title": "Become a Coach",
+    "section": "coaches-refs",
+    "slug": {"_type": "slug", "current": "become-a-coach"},
+    "excerpt": "Training and support for new and experienced coaches.",
+    "body": [
+      {
+        "_key": "coach-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "coach-span-1",
+            "_type": "span",
+            "text": "Coaches are central to the player experience. We support coach development through workshops, mentoring, and pathway information for those growing in the role."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.resources-faqs",
+    "_type": "page",
+    "title": "FAQs",
+    "section": "resources",
+    "slug": {"_type": "slug", "current": "faqs"},
+    "excerpt": "Common questions about programmes, competitions, and getting involved.",
+    "body": [
+      {
+        "_key": "faq-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "faq-span-1",
+            "_type": "span",
+            "text": "Use this page to answer the questions parents, players, and volunteers ask most often about registration, timing, locations, and eligibility."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.resources-policies-procedures",
+    "_type": "page",
+    "title": "Policies & Procedures",
+    "section": "resources",
+    "slug": {"_type": "slug", "current": "policies-procedures"},
+    "excerpt": "A home for governance documents, policies, and operational guidance.",
+    "body": [
+      {
+        "_key": "policies-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "policies-span-1",
+            "_type": "span",
+            "text": "Use this page to publish safeguarding, code of conduct, complaints, and operational documents for clubs, schools, and community members."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "page.contact-key-contacts",
+    "_type": "page",
+    "title": "Key Contacts",
+    "section": "contact",
+    "slug": {"_type": "slug", "current": "key-contacts"},
+    "excerpt": "Who to contact for programmes, competitions, and general enquiries.",
+    "body": [
+      {
+        "_key": "contact-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "contact-span-1",
+            "_type": "span",
+            "text": "For general enquiries, start with hello@northlandbasketball.org.nz. Add staff and programme contact details here as your content structure develops."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "post.u18-girls-trials",
+    "_type": "post",
+    "title": "U18 Girls Northland Trials",
+    "slug": {"_type": "slug", "current": "u18-girls-northland-trials"},
+    "category": "Trials",
+    "publishedAt": "2026-03-19T09:00:00.000Z",
+    "excerpt": "Trial registrations are open for players aiming to represent Northland at U18 level.",
+    "body": [
+      {
+        "_key": "post1-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "post1-span-1",
+            "_type": "span",
+            "text": "Northland Basketball will soon confirm trial dates, venue details, and registration requirements for U18 girls representative selection."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "post.u20-mens-trials",
+    "_type": "post",
+    "title": "U20 Mens Northland Trials",
+    "slug": {"_type": "slug", "current": "u20-mens-northland-trials"},
+    "category": "Trials",
+    "publishedAt": "2026-03-18T09:00:00.000Z",
+    "excerpt": "Expression of interest details for U20 men's trials will be posted here.",
+    "body": [
+      {
+        "_key": "post2-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "post2-span-1",
+            "_type": "span",
+            "text": "This post is a starter placeholder for trial information, registration deadlines, and selection criteria for U20 men's representative basketball."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "post.anahera-worsfold-committed",
+    "_type": "post",
+    "title": "Anahera Worsfold Committed",
+    "slug": {"_type": "slug", "current": "anahera-worsfold-committed"},
+    "category": "Player News",
+    "publishedAt": "2026-03-17T09:00:00.000Z",
+    "excerpt": "Celebrating a player pathway milestone from Northland basketball.",
+    "body": [
+      {
+        "_key": "post3-block-1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "post3-span-1",
+            "_type": "span",
+            "text": "Use this post format to highlight player commitments, representative selections, coach appointments, and other positive milestones across the region."
+          }
+        ]
+      }
+    ]
+  }
+]

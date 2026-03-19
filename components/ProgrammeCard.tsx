@@ -1,9 +1,14 @@
+import Link from "next/link";
+
 type ProgrammeCardProps = {
   title: string;
+  href?: string;
   featured?: boolean;
 };
 
-export function ProgrammeCard({ title, featured = false }: ProgrammeCardProps) {
+export function ProgrammeCard({title, href, featured = false}: ProgrammeCardProps) {
+  const content = <h3 className="max-w-[12rem] text-base font-extrabold uppercase leading-tight tracking-[0.08em]">{title}</h3>;
+
   return (
     <article
       className={[
@@ -11,9 +16,11 @@ export function ProgrammeCard({ title, featured = false }: ProgrammeCardProps) {
         featured ? "bg-northland-blue text-white" : "bg-[#74cde0] text-black"
       ].join(" ")}
     >
-      <h3 className="max-w-[12rem] text-base font-extrabold uppercase leading-tight tracking-[0.08em]">
-        {featured ? <a href="#" className="underline decoration-white/70 underline-offset-4">{title}</a> : title}
-      </h3>
+      {href ? (
+        <Link href={href} className={featured ? "underline decoration-white/70 underline-offset-4" : "underline decoration-black/40 underline-offset-4"}>
+          {content}
+        </Link>
+      ) : content}
     </article>
   );
 }

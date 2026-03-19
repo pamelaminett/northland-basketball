@@ -1,25 +1,19 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { RegionNav } from "@/components/RegionNav";
-import { Sponsors } from "@/components/Sponsors";
-import { HeroSection } from "@/sections/HeroSection";
-import { LatestSection } from "@/sections/LatestSection";
-import { ProgrammesSection } from "@/sections/ProgrammesSection";
-import { StatementSection } from "@/sections/StatementSection";
+import {SiteShell} from "@/components/SiteShell";
+import {HeroSection} from "@/sections/HeroSection";
+import {LatestSection} from "@/sections/LatestSection";
+import {ProgrammesSection} from "@/sections/ProgrammesSection";
+import {StatementSection} from "@/sections/StatementSection";
+import {getHomePage} from "@/sanity/lib/queries";
 
-export default function Homepage() {
+export default async function Homepage() {
+  const homePage = await getHomePage();
+
   return (
-    <div className="min-h-screen bg-northland-slate text-slate-900">
-      <Header />
-      <RegionNav />
-      <main>
-        <HeroSection />
-        <ProgrammesSection />
-        <StatementSection />
-        <LatestSection />
-      </main>
-      <Sponsors />
-      <Footer />
-    </div>
+    <SiteShell>
+      <HeroSection homePage={homePage} />
+      <ProgrammesSection homePage={homePage} />
+      <StatementSection statement={homePage?.statement} />
+      <LatestSection heading={homePage?.latestHeading} />
+    </SiteShell>
   );
 }

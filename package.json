@@ -9,14 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@portabletext/react": "3.2.1",
+    "@sanity/image-url": "1.2.0",
+    "groq": "4.22.0",
     "next": "15.2.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "next-sanity": "11.6.12",
+    "react": "19.2.2",
+    "react-dom": "19.2.2",
+    "sanity": "4.22.0",
+    "styled-components": "6.1.19"
   },
   "devDependencies": {
     "@types/node": "22.13.10",
-    "@types/react": "19.0.10",
-    "@types/react-dom": "19.0.4",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
     "autoprefixer": "10.4.20",
     "postcss": "8.5.3",
     "tailwindcss": "3.4.17",

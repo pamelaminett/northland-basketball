@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { NewsGrid } from "@/components/NewsGrid";
+import {NewsGrid} from "@/components/NewsGrid";
 
-export function LatestSection() {
+export async function LatestSection({heading = "The Latest"}: {heading?: string}) {
   return (
     <section aria-labelledby="latest-heading" className="px-4 py-8 sm:px-6 md:py-12 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <h2 id="latest-heading" className="mb-6 font-display text-5xl tracking-tight text-northland-blue sm:text-6xl">
-          The Latest
+          {heading}
         </h2>
 
         <div className="grid gap-8 xl:grid-cols-[minmax(0,1.6fr)_22rem]">
