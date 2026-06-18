@@ -8,6 +8,14 @@ export const postType = defineType({
     defineField({name: "title", title: "Title", type: "string", validation: (rule) => rule.required()}),
     defineField({name: "slug", title: "Slug", type: "slug", options: {source: "title", maxLength: 96}, validation: (rule) => rule.required()}),
     defineField({name: "category", title: "Category", type: "string"}),
+    defineField({
+      name: "tags",
+      title: "Tags",
+      description: "Use tags like prems, tribal-wars, kiwi-hoops to power contextual sidebars on pages.",
+      type: "array",
+      of: [defineArrayMember({type: "string"})],
+      options: {layout: "tags"}
+    }),
     defineField({name: "publishedAt", title: "Published at", type: "datetime", initialValue: () => new Date().toISOString(), validation: (rule) => rule.required()}),
     defineField({name: "excerpt", title: "Excerpt", type: "text", rows: 3}),
     defineField({name: "mainImage", title: "Main image", type: "image", options: {hotspot: true}}),

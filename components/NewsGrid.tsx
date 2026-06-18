@@ -20,13 +20,19 @@ const fallbackNewsItems = [
     category: "Player News",
     image: "/placeholders/news-3.svg",
     href: "/news"
+  },
+  {
+    title: "Prem League Starts May 22",
+    category: "Schools",
+    image: "/placeholders/news-2.svg",
+    href: "/news"
   }
 ];
 
 export async function NewsGrid() {
   const posts = await getPosts();
   const items = posts.length
-    ? posts.slice(0, 3).map((post, index) => ({
+    ? posts.slice(0, 4).map((post, index) => ({
         title: post.title,
         category: post.category || "News",
         image: post.mainImage?.asset ? urlFor(post.mainImage).width(960).height(640).fit("crop").url() : fallbackNewsItems[index]?.image,
@@ -35,7 +41,7 @@ export async function NewsGrid() {
     : fallbackNewsItems;
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-2">
+    <div className="grid gap-3 md:grid-cols-2">
       {items.map((item) => (
         <NewsCard key={item.title} title={item.title} category={item.category} image={item.image} href={item.href} />
       ))}

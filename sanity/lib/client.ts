@@ -1,11 +1,12 @@
 import {createClient} from "next-sanity";
-import {apiVersion, dataset, hasRequiredEnv, projectId} from "@/sanity/env";
+import {apiVersion, dataset, hasRequiredEnv, projectId, readToken} from "@/sanity/env";
 
 export const client = createClient({
   projectId: projectId || "placeholder-project-id",
   dataset: dataset || "production",
   apiVersion,
-  useCdn: true,
+  useCdn: !readToken,
+  token: readToken || undefined,
   perspective: "published",
   stega: {enabled: false}
 });

@@ -1,18 +1,23 @@
-const regions = ["Kaipara", "Hokianga", "Mid-North", "Whangarei", "Far-North"];
+import {RegionNavClient} from "@/components/RegionNavClient";
+import {getHomePage} from "@/sanity/lib/queries";
+import type {HomePageRegion} from "@/sanity/lib/types";
 
-export function RegionNav() {
+const fallbackRegions: HomePageRegion[] = [
+  {label: "Kaipara"},
+  {label: "Hokianga"},
+  {label: "Mid-North"},
+  {label: "Whangarei"},
+  {label: "Far-North"}
+];
+
+export async function RegionNav() {
+  const homePage = await getHomePage();
+  const regions = homePage?.regions?.length ? homePage.regions : fallbackRegions;
+
   return (
     <nav aria-label="Regions" className="border-b border-black/5 bg-[#efefef]">
       <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-        <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-medium uppercase tracking-[0.18em] text-northland-blue sm:gap-x-10">
-          {regions.map((region) => (
-            <li key={region}>
-              <a href="#" className="transition hover:text-northland-tealDark">
-                {region}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <RegionNavClient regions={regions} />
       </div>
     </nav>
   );

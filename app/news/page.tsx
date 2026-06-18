@@ -14,7 +14,7 @@ export default async function NewsIndexPage() {
           <header className="mb-10 border-b border-black/10 pb-8">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-northland-tealDark">News & Stories</p>
             <h1 className="font-display text-5xl uppercase leading-[0.92] tracking-tight text-northland-blue sm:text-6xl">The Latest</h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-black/75">Posts created in Sanity Studio will appear here automatically.</p>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-black/75">The latest news from Northland Basketball.</p>
           </header>
           {posts.length ? (
             <div className="grid gap-5 md:grid-cols-2">

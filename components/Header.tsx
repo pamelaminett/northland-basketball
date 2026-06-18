@@ -1,61 +1,111 @@
-import Link from "next/link";
-import {SocialIcon} from "@/components/SocialIcon";
+import {HeaderClient} from "@/components/HeaderClient";
 import {getSiteSettings} from "@/sanity/lib/queries";
+import {urlFor} from "@/sanity/lib/image";
 import type {NavLink, SocialLink} from "@/sanity/lib/types";
 
 const fallbackNavLinks: NavLink[] = [
-  {label: "About", href: "/about/our-story"},
-  {label: "Programmes", href: "/programmes/kiwi-hoops"},
-  {label: "Competitions", href: "/competitions/secondary-school-competition"},
-  {label: "Reps", href: "/reps/pathways"},
-  {label: "Coaches & Refs", href: "/coaches-refs/become-a-coach"},
-  {label: "News", href: "/news"},
-  {label: "Resources", href: "/resources/faqs"}
+  {
+    label: "About",
+    children: [
+      {label: "Our Story", href: "/about/our-story"},
+      {label: "Vision & Values", href: "/about/vision-values"},
+      {label: "Board & Staff", href: "/about/board-staff"},
+      {label: "Strategic Plan", href: "/about/strategic-plan"},
+      {label: "Partners & Funders", href: "/about/partners-funders"},
+      {label: "Contact Us", href: "/contact/key-contacts"}
+    ]
+  },
+  {
+    label: "Programmes",
+    children: [
+      {label: "Kiwi Hoops", href: "/programmes/kiwi-hoops"},
+      {label: "Girls Got Game", href: "/programmes/girls-got-game"},
+      {label: "Development Programmes", href: "/programmes/development-programmes"},
+      {label: "Holiday Programmes", href: "/programmes/holiday-programmes"},
+      {label: "In-School Programmes", href: "/programmes/in-school-programmes"}
+    ]
+  },
+  {
+    label: "Competitions",
+    children: [
+      {label: "Primary School Competition", href: "/competitions/primary-school-competition"},
+      {label: "Secondary School Competition", href: "/competitions/secondary-school-competition"},
+      {label: "Youth Leagues", href: "/competitions/youth-leagues"},
+      {label: "Adult Leagues", href: "/competitions/adult-leagues"},
+      {label: "Tribal Wars", href: "/competitions/tribal-wars"},
+      {label: "SuperCity", href: "/competitions/supercity"},
+      {label: "Regional / National Tournaments", href: "/competitions/regional-national-tournaments"},
+      {label: "3x3 Basketball", href: "/programmes/3x3"},
+      {label: "Fixtures & Results", href: "/competitions/fixtures-results"},
+      {label: "Draws & Key Dates", href: "/competitions/draws-key-dates"}
+    ]
+  },
+  {
+    label: "Reps",
+    children: [
+      {label: "Pathways", href: "/reps/pathways"},
+      {label: "Trial Dates", href: "/reps/trial-dates"},
+      {label: "Selection Criteria", href: "/reps/selection-criteria"},
+      {label: "Competition Calendar", href: "/reps/competition-calendar"},
+      {label: "Coaches", href: "/reps/coaches"},
+      {label: "Code of Conduct", href: "/reps/code-of-conduct"},
+      {label: "Photo Templates", href: "/reps/photo-templates"},
+      {label: "Current and Past Teams", href: "/reps/current-past-teams"}
+    ]
+  },
+  {
+    label: "Coaches and Refs",
+    children: [
+      {label: "Become a Coach", href: "/coaches-refs/become-a-coach"},
+      {label: "Become a Referee", href: "/coaches-refs/become-a-referee"},
+      {label: "Resources & Downloads", href: "/coaches-refs/resources-downloads"},
+      {label: "Codes of Conduct", href: "/coaches-refs/codes-of-conduct"}
+    ]
+  },
+  {
+    label: "News",
+    children: [
+      {label: "News", href: "/news"},
+      {label: "Player Stories", href: "/news/player-stories"},
+      {label: "Coach Spotlights", href: "/news/coach-spotlights"},
+      {label: "Programme Updates", href: "/news/programme-updates"},
+      {label: "Media Gallery", href: "/news/media-gallery"}
+    ]
+  },
+  {
+    label: "Resources",
+    children: [
+      {label: "Policies & Procedures", href: "/resources/policies-procedures"},
+      {label: "Codes of Conduct", href: "/resources/codes-of-conduct"},
+      {label: "Health & Safety", href: "/resources/health-safety"},
+      {label: "Safeguarding", href: "/resources/safeguarding"},
+      {label: "Forms & Documents", href: "/resources/forms-documents"},
+      {label: "FAQs", href: "/resources/faqs"}
+    ]
+  },
+  {
+    label: "Contact",
+    children: [
+      {label: "Sponsorship & Partnerships", href: "/contact/sponsorship-partnerships"},
+      {label: "Donations & Support", href: "/contact/donations-support"},
+      {label: "Volunteers", href: "/contact/volunteers"},
+      {label: "Key Contacts", href: "/contact/key-contacts"},
+      {label: "Social Media Links", href: "/contact/social-media-links"},
+      {label: "Calendar", href: "/contact/calendar"}
+    ]
+  }
 ];
 
 const fallbackSocials: SocialLink[] = [
-  {label: "Email", href: "mailto:hello@northlandbasketball.org.nz"},
-  {label: "Facebook", href: "https://facebook.com"},
+  {label: "Facebook", href: "https://www.facebook.com/northlandbasketball"},
   {label: "Instagram", href: "https://instagram.com"}
 ];
-
-function renderLink(link: NavLink) {
-  const external = link.openInNewTab || link.href.startsWith("http") || link.href.startsWith("mailto:");
-
-  if (external) {
-    return <a href={link.href} target={link.openInNewTab ? "_blank" : undefined} rel={link.openInNewTab ? "noreferrer" : undefined} className="transition hover:text-northland-blue">{link.label}</a>;
-  }
-
-  return <Link href={link.href} className="transition hover:text-northland-blue">{link.label}</Link>;
-}
 
 export async function Header() {
   const settings = await getSiteSettings();
   const navLinks = settings?.navigation?.length ? settings.navigation : fallbackNavLinks;
   const socials = settings?.socialLinks?.length ? settings.socialLinks : fallbackSocials;
+  const headerLogoUrl = settings?.headerLogo?.asset ? urlFor(settings.headerLogo).width(320).height(160).fit("max").url() : null;
 
-  return (
-    <header className="bg-northland-teal bg-hero-pattern text-white">
-      <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-5 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-          <Link href="/" className="inline-flex w-fit flex-col font-display uppercase leading-none tracking-[0.18em] text-northland-blue">
-            <span className="text-[2rem] font-semibold">Northland</span>
-            <span className="text-sm tracking-[0.5em]">Basketball</span>
-          </Link>
-          <nav aria-label="Primary" className="order-3 lg:order-2">
-            <ul className="flex flex-wrap justify-start gap-x-4 gap-y-3 text-sm uppercase tracking-[0.16em] text-white/92 sm:justify-center">
-              {navLinks.map((item) => <li key={item.label}>{renderLink(item)}</li>)}
-            </ul>
-          </nav>
-          <div className="order-2 flex items-center gap-3 lg:order-3 lg:justify-end">
-            {socials.map((social) => (
-              <a key={social.label} href={social.href} aria-label={social.label} target={social.href.startsWith("http") ? "_blank" : undefined} rel={social.href.startsWith("http") ? "noreferrer" : undefined}>
-                <SocialIcon label={social.label} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </header>
-  );
+  return <HeaderClient headerLogoAlt={settings?.headerLogo?.alt || "Northland Basketball logo"} headerLogoUrl={headerLogoUrl} navLinks={navLinks} socials={socials} />;
 }

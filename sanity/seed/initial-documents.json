@@ -4,18 +4,108 @@
     "_type": "siteSettings",
     "title": "Site Settings",
     "navigation": [
-      {"_key": "nav-about", "label": "About", "href": "/about/our-story"},
-      {"_key": "nav-programmes", "label": "Programmes", "href": "/programmes/kiwi-hoops"},
-      {"_key": "nav-competitions", "label": "Competitions", "href": "/competitions/secondary-school-competition"},
-      {"_key": "nav-reps", "label": "Reps", "href": "/reps/pathways"},
-      {"_key": "nav-coaches", "label": "Coaches & Refs", "href": "/coaches-refs/become-a-coach"},
-      {"_key": "nav-news", "label": "News", "href": "/news"},
-      {"_key": "nav-resources", "label": "Resources", "href": "/resources/faqs"},
-      {"_key": "nav-contact", "label": "Contact", "href": "/contact/key-contacts"}
+      {
+        "_key": "nav-about",
+        "label": "About",
+        "children": [
+          {"_key": "nav-about-story", "label": "Our Story", "page": {"_type": "reference", "_ref": "page.about-our-story"}},
+          {"_key": "nav-about-vision", "label": "Vision & Values", "href": "/about/vision-values"},
+          {"_key": "nav-about-board", "label": "Board & Staff", "href": "/about/board-staff"},
+          {"_key": "nav-about-plan", "label": "Strategic Plan", "href": "/about/strategic-plan"},
+          {"_key": "nav-about-partners", "label": "Partners & Funders", "href": "/about/partners-funders"},
+          {"_key": "nav-about-contact", "label": "Contact Us", "page": {"_type": "reference", "_ref": "page.contact-key-contacts"}}
+        ]
+      },
+      {
+        "_key": "nav-programmes",
+        "label": "Programmes",
+        "children": [
+          {"_key": "nav-programmes-kiwi", "label": "Kiwi Hoops", "page": {"_type": "reference", "_ref": "page.programmes-kiwi-hoops"}},
+          {"_key": "nav-programmes-girls", "label": "Girls Got Game", "href": "/programmes/girls-got-game"},
+          {"_key": "nav-programmes-development", "label": "Development Programmes", "href": "/programmes/development-programmes"},
+          {"_key": "nav-programmes-holiday", "label": "Holiday Programmes", "href": "/programmes/holiday-programmes"},
+          {"_key": "nav-programmes-school", "label": "In-School Programmes", "href": "/programmes/in-school-programmes"}
+        ]
+      },
+      {
+        "_key": "nav-competitions",
+        "label": "Competitions",
+        "children": [
+          {"_key": "nav-competitions-primary", "label": "Primary School Competition", "href": "/competitions/primary-school-competition"},
+          {"_key": "nav-competitions-secondary", "label": "Secondary School Competition", "page": {"_type": "reference", "_ref": "page.competitions-secondary-school-competition"}},
+          {"_key": "nav-competitions-youth", "label": "Youth Leagues", "href": "/competitions/youth-leagues"},
+          {"_key": "nav-competitions-adult", "label": "Adult Leagues", "href": "/competitions/adult-leagues"},
+          {"_key": "nav-competitions-tribal", "label": "Tribal Wars", "href": "/competitions/tribal-wars"},
+          {"_key": "nav-competitions-supercity", "label": "SuperCity", "href": "/competitions/supercity"},
+          {"_key": "nav-competitions-tournaments", "label": "Regional / National Tournaments", "href": "/competitions/regional-national-tournaments"},
+          {"_key": "nav-competitions-3x3", "label": "3x3 Basketball", "page": {"_type": "reference", "_ref": "page.programmes-3x3"}},
+          {"_key": "nav-competitions-fixtures", "label": "Fixtures & Results", "href": "/competitions/fixtures-results"},
+          {"_key": "nav-competitions-dates", "label": "Draws & Key Dates", "href": "/competitions/draws-key-dates"}
+        ]
+      },
+      {
+        "_key": "nav-reps",
+        "label": "Reps",
+        "children": [
+          {"_key": "nav-reps-pathways", "label": "Pathways", "page": {"_type": "reference", "_ref": "page.reps-pathways"}},
+          {"_key": "nav-reps-trials", "label": "Trial Dates", "href": "/reps/trial-dates"},
+          {"_key": "nav-reps-selection", "label": "Selection Criteria", "href": "/reps/selection-criteria"},
+          {"_key": "nav-reps-calendar", "label": "Competition Calendar", "href": "/reps/competition-calendar"},
+          {"_key": "nav-reps-coaches", "label": "Coaches", "href": "/reps/coaches"},
+          {"_key": "nav-reps-code", "label": "Code of Conduct", "href": "/reps/code-of-conduct"},
+          {"_key": "nav-reps-photo", "label": "Photo Templates", "href": "/reps/photo-templates"},
+          {"_key": "nav-reps-teams", "label": "Current and Past Teams", "href": "/reps/current-past-teams"}
+        ]
+      },
+      {
+        "_key": "nav-coaches",
+        "label": "Coaches & Referees",
+        "children": [
+          {"_key": "nav-coaches-coach", "label": "Become a Coach", "page": {"_type": "reference", "_ref": "page.coaches-refs-become-a-coach"}},
+          {"_key": "nav-coaches-ref", "label": "Become a Referee", "href": "/coaches-refs/become-a-referee"},
+          {"_key": "nav-coaches-downloads", "label": "Resources & Downloads", "href": "/coaches-refs/resources-downloads"},
+          {"_key": "nav-coaches-codes", "label": "Codes of Conduct", "href": "/coaches-refs/codes-of-conduct"}
+        ]
+      },
+      {
+        "_key": "nav-news",
+        "label": "News & Stories",
+        "children": [
+          {"_key": "nav-news-blog", "label": "News", "href": "/news"},
+          {"_key": "nav-news-player", "label": "Player Stories", "href": "/news/player-stories"},
+          {"_key": "nav-news-coach", "label": "Coach Spotlights", "href": "/news/coach-spotlights"},
+          {"_key": "nav-news-programme", "label": "Programme Updates", "href": "/news/programme-updates"},
+          {"_key": "nav-news-media", "label": "Media Gallery", "href": "/news/media-gallery"}
+        ]
+      },
+      {
+        "_key": "nav-resources",
+        "label": "Resources",
+        "children": [
+          {"_key": "nav-resources-policies", "label": "Policies & Procedures", "page": {"_type": "reference", "_ref": "page.resources-policies-procedures"}},
+          {"_key": "nav-resources-codes", "label": "Codes of Conduct", "href": "/resources/codes-of-conduct"},
+          {"_key": "nav-resources-health", "label": "Health & Safety", "href": "/resources/health-safety"},
+          {"_key": "nav-resources-safeguarding", "label": "Safeguarding", "href": "/resources/safeguarding"},
+          {"_key": "nav-resources-forms", "label": "Forms & Documents", "href": "/resources/forms-documents"},
+          {"_key": "nav-resources-faq", "label": "FAQs", "page": {"_type": "reference", "_ref": "page.resources-faqs"}}
+        ]
+      },
+      {
+        "_key": "nav-contact",
+        "label": "Contact",
+        "children": [
+          {"_key": "nav-contact-sponsors", "label": "Sponsorship & Partnerships", "href": "/contact/sponsorship-partnerships"},
+          {"_key": "nav-contact-donations", "label": "Donations & Support", "href": "/contact/donations-support"},
+          {"_key": "nav-contact-volunteers", "label": "Volunteers", "href": "/contact/volunteers"},
+          {"_key": "nav-contact-contacts", "label": "Key Contacts", "page": {"_type": "reference", "_ref": "page.contact-key-contacts"}},
+          {"_key": "nav-contact-social", "label": "Social Media Links", "href": "/contact/social-media-links"},
+          {"_key": "nav-contact-calendar", "label": "Calendar", "href": "/contact/calendar"}
+        ]
+      }
     ],
     "socialLinks": [
       {"_key": "social-email", "label": "Email", "href": "mailto:hello@northlandbasketball.org.nz"},
-      {"_key": "social-facebook", "label": "Facebook", "href": "https://facebook.com"},
+      {"_key": "social-facebook", "label": "Facebook", "href": "https://www.facebook.com/northlandbasketball"},
       {"_key": "social-instagram", "label": "Instagram", "href": "https://instagram.com"}
     ],
     "footerLinks": [
@@ -48,6 +138,13 @@
     "_type": "homePage",
     "title": "Homepage",
     "heroHeading": "We Are The North",
+    "regions": [
+      {"_key": "region-kaipara", "label": "Kaipara", "href": "/programmes/kiwi-hoops"},
+      {"_key": "region-hokianga", "label": "Hokianga", "href": "/competitions/secondary-school-competition"},
+      {"_key": "region-mid-north", "label": "Mid-North", "href": "/reps/pathways"},
+      {"_key": "region-whangarei", "label": "Whangarei", "href": "/contact/key-contacts"},
+      {"_key": "region-far-north", "label": "Far-North", "href": "/resources/faqs"}
+    ],
     "programmesHeading": "Play Basketball at Every Level",
     "programmesBody": [
       {
