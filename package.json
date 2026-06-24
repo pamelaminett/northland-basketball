@@ -13,7 +13,7 @@
     "@portabletext/react": "3.2.1",
     "@sanity/image-url": "1.2.0",
     "groq": "4.22.0",
-    "next": "15.2.0",
+    "next": "15.2.8",
     "next-sanity": "11.6.12",
     "react": "19.2.2",
     "react-dom": "19.2.2",
