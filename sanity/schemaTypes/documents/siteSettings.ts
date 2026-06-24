@@ -150,7 +150,48 @@ export const siteSettingsType = defineType({
       name: "sponsors",
       title: "Sponsors",
       type: "array",
-      of: [defineArrayMember({type: "object", fields: [defineField({name: "name", title: "Name", type: "string", validation: (rule) => rule.required()}), defineField({name: "href", title: "Href", type: "string"})]})]
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({name: "name", title: "Name", type: "string", validation: (rule) => rule.required()}),
+            defineField({
+              name: "tier",
+              title: "Tier",
+              type: "string",
+              options: {
+                list: [
+                  {title: "Funding Partners", value: "funding"},
+                  {title: "Community Partners", value: "community"}
+                ],
+                layout: "radio"
+              },
+              initialValue: "funding",
+              validation: (rule) => rule.required()
+            }),
+            defineField({name: "href", title: "Href", type: "string"}),
+            defineField({
+              name: "logo",
+              title: "Logo",
+              type: "image",
+              options: {hotspot: true},
+              fields: [defineField({name: "alt", title: "Alt text", type: "string"})]
+            })
+          ],
+          preview: {
+            select: {
+              title: "name",
+              tier: "tier",
+              media: "logo"
+            },
+            prepare: ({title, tier, media}) => ({
+              title,
+              subtitle: tier === "community" ? "Community Partner" : "Funding Partner",
+              media
+            })
+          }
+        })
+      ]
     })
   ],
   fieldsets: [

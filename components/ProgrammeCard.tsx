@@ -11,7 +11,7 @@ export function ProgrammeCard({title, href, description}: ProgrammeCardProps) {
   const content = (
     <div className="grid h-full content-between gap-8 text-left">
       <div>
-        <h3 className="max-w-[15rem] text-lg font-black uppercase leading-[1.05] tracking-[0.09em] text-black">
+        <h3 className="font-display max-w-[15rem] text-lg uppercase leading-[1.05] tracking-[0.09em] text-black">
           {title}
         </h3>
         {description ? (

@@ -19,8 +19,8 @@ const config: Config = {
         }
       },
       fontFamily: {
-        display: ["Oswald", "Arial Narrow", "sans-serif"],
-        sans: ["Montserrat", "Helvetica Neue", "sans-serif"]
+        display: ["var(--font-oswald)", "Arial Narrow", "sans-serif"],
+        sans: ["var(--font-montserrat)", "Helvetica Neue", "sans-serif"]
       },
       boxShadow: {
         card: "0 18px 50px rgba(18, 26, 84, 0.12)"

@@ -52,7 +52,7 @@ export function HeaderClient({headerLogoAlt, headerLogoUrl, navLinks, socials}: 
   }
 
   return (
-    <header className="bg-northland-teal bg-hero-pattern text-white">
+    <header className="sticky top-0 z-[70] bg-northland-teal bg-hero-pattern text-white shadow-[0_10px_28px_rgba(7,12,44,0.16)]">
       <div className="relative mx-auto flex max-w-7xl flex-col gap-5 px-4 py-6 sm:px-6 min-[1180px]:px-8 min-[1180px]:pb-5 min-[1180px]:pt-10">
         <div className="flex items-center justify-between gap-4 min-[1180px]:grid min-[1180px]:grid-cols-[auto_minmax(0,1fr)_auto] min-[1180px]:items-center min-[1180px]:gap-x-4">
           <Link href="/" className="inline-flex w-fit flex-col self-center font-display uppercase leading-none tracking-[0.18em] text-northland-blue" onClick={closeMenu}>

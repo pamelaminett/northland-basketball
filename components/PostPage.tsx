@@ -20,7 +20,7 @@ export function PostPage({post}: {post: PostDocument}) {
         </nav>
         <header className="mb-10 border-b border-black/10 pb-8">
           {post.category ? <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-northland-tealDark">{post.category}</p> : null}
-          <h1 className="font-display text-5xl font-bold uppercase leading-[0.92] tracking-tight text-northland-blue sm:text-6xl">{post.title}</h1>
+          <h1 className="font-display text-5xl uppercase leading-[0.92] tracking-tight text-northland-blue sm:text-6xl">{post.title}</h1>
           <div className="mt-5 flex flex-wrap items-center gap-4 text-sm uppercase tracking-[0.14em] text-black/60">{formattedDate ? <span>{formattedDate}</span> : null}</div>
           {post.excerpt ? <p className="mt-5 max-w-3xl text-lg leading-8 text-black/75">{post.excerpt}</p> : null}
         </header>

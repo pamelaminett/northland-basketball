@@ -96,7 +96,7 @@ export function HeroImages({heading = "We The North", images}: {heading?: string
     <div>
       <div className="grid grid-cols-6 gap-2 md:gap-2.5 xl:gap-3 max-[600px]:grid-cols-1">
         <article className="col-span-2 flex min-h-[8.75rem] items-center overflow-hidden bg-[#13137d] px-3 py-3 shadow-card sm:min-h-[9.5rem] sm:px-3.5 sm:py-3.5 md:min-h-[12rem] md:px-4 md:py-4 lg:min-h-[15rem] lg:px-5 lg:py-5 xl:min-h-[22rem] xl:px-6 xl:py-6 max-[600px]:col-span-1">
-          <h1 className="mx-auto w-fit font-display text-[2.45rem] font-bold uppercase leading-[0.84] tracking-[0.02em] text-white sm:text-[2.75rem] md:text-[3.35rem] lg:text-[4.35rem] xl:text-[6.45rem]">
+          <h1 className="mx-auto w-fit font-display text-[2.45rem] uppercase leading-[0.84] tracking-[0.02em] text-white sm:text-[2.75rem] md:text-[3.35rem] lg:text-[4.35rem] xl:text-[6.45rem]">
             {heading.split(/\s+/).map((word) => (
               <span key={word} className="block">
                 {word}

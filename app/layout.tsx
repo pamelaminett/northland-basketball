@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
+import {Montserrat, Oswald} from "next/font/google";
 import "./globals.css";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap"
+});
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-oswald",
+  weight: ["500"],
+  display: "swap"
+});
 
 export const metadata: Metadata = {
   title: "Northland Basketball",
@@ -13,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${montserrat.variable} ${oswald.variable}`}>{children}</body>
     </html>
   );
 }

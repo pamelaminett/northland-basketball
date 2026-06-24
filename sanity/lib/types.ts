@@ -2,9 +2,14 @@ import type {Image, TypedObject} from "sanity";
 
 export type NavLink = { label: string; href?: string; openInNewTab?: boolean; children?: NavLink[]; };
 export type SocialLink = { label: string; href: string; };
-export type Sponsor = { name: string; href?: string; };
 export type PortableTextBlock = TypedObject[];
 export type SanityImage = Image & { alt?: string; };
+export type Sponsor = {
+  name: string;
+  href?: string;
+  tier: "funding" | "community";
+  logo?: SanityImage;
+};
 export type HomePageRegion = { label: string; href?: string; };
 export type ProgrammeCardItem = { title: string; href?: string; featured?: boolean; };
 export type PremLeagueFixture = { homeTeam: string; awayTeam: string; time?: string; venue?: string; };

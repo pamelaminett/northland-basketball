@@ -4,7 +4,7 @@ import {PageAccordionSections} from "@/components/PageAccordionSections";
 import {PageFacebookFeeds} from "@/components/PageFacebookFeeds";
 import {portableTextComponents} from "@/components/PortableTextComponents";
 import {PremLeagueSection} from "@/sections/PremLeagueSection";
-import {RelatedNewsSidebar} from "@/components/RelatedNewsSidebar";
+import {RelatedNewsSection} from "@/components/RelatedNewsSection";
 import {SectionSubnav} from "@/components/SectionSubnav";
 import {urlFor} from "@/sanity/lib/image";
 import type {HomePageDocument, PageDocument, PostDocument, SiteSettings} from "@/sanity/lib/types";
@@ -19,10 +19,13 @@ const sectionTitles: Record<string, string> = {
   contact: "Contact"
 };
 
+function normalizeNavLabel(value: string) {
+  return value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "");
+}
+
 const interiorShellClass = "relative mx-auto max-w-[1400px]";
 const centeredContentClass = "mx-auto max-w-[800px]";
 const desktopLeftRailClass = "hidden min-[1340px]:block min-[1340px]:absolute min-[1340px]:left-[40px] min-[1340px]:top-0 min-[1340px]:w-[11.875rem]";
-const desktopRightRailClass = "hidden min-[1260px]:block min-[1260px]:absolute min-[1260px]:right-0 min-[1260px]:top-0 min-[1260px]:w-[20rem]";
 
 function DownloadsSection({page}: {page: PageDocument}) {
   if (!page.downloads?.length) {
@@ -65,20 +68,23 @@ function PageMainContent({
   homePage,
   showPremLeagueTable,
   showFacebookGrid,
-  showInlineFacebook
+  showInlineFacebook,
+  relatedPosts
 }: {
   page: PageDocument;
   homePage?: HomePageDocument | null;
   showPremLeagueTable: boolean;
   showFacebookGrid: boolean;
   showInlineFacebook: boolean;
+  relatedPosts: PostDocument[];
 }) {
   const inlineFacebookFeed = showInlineFacebook ? (page.facebookFeeds || [])[0] : null;
+  const showRelatedNews = relatedPosts.length > 0;
 
   return (
     <>
       <header className="mb-10 border-b border-black/10 pb-8">
-        <h1 className="font-display text-5xl font-bold uppercase leading-[0.92] tracking-tight text-northland-blue sm:text-6xl">{page.title}</h1>
+        <h1 className="font-display text-5xl uppercase leading-[0.92] tracking-tight text-northland-blue sm:text-6xl">{page.title}</h1>
         {page.excerpt ? <p className="mt-5 max-w-3xl text-lg leading-8 text-black/75">{page.excerpt}</p> : null}
       </header>
       {showPremLeagueTable ? <PremLeagueSection homePage={homePage} showSidebar={false} /> : null}
@@ -97,6 +103,11 @@ function PageMainContent({
       </div>
       <PageAccordionSections sections={page.accordionSections || []} yearGroups={page.accordionYearGroups || []} />
       {showFacebookGrid ? <PageFacebookFeeds feeds={page.facebookFeeds || []} /> : null}
+      {showRelatedNews ? (
+        <div className="mt-12">
+          <RelatedNewsSection heading={page.sidebarNewsHeading || "Latest News"} posts={relatedPosts} />
+        </div>
+      ) : null}
     </>
   );
 }
@@ -116,7 +127,8 @@ export function CmsPage({
   const sectionTitle = sectionTitles[page.section] || page.section;
   const showPremLeagueTable = page.section === "competitions" && ["fixtures-results", "prem-league"].includes(page.slug);
   const currentPath = `/${page.section}/${page.slug}`;
-  const sectionNav = siteSettings?.navigation?.find((item) => item.children?.some((child) => child.href?.startsWith(`/${page.section}/`)));
+  const sectionNavCandidates = siteSettings?.navigation?.filter((item) => item.children?.some((child) => child.href?.startsWith(`/${page.section}/`))) || [];
+  const sectionNav = sectionNavCandidates.find((item) => normalizeNavLabel(item.label) === normalizeNavLabel(sectionTitle)) || sectionNavCandidates[0];
   const sectionItems = sectionNav?.children || [];
   const isRegionLinkedPage = Boolean(homePage?.regions?.some((region) => region.href === currentPath));
   const showSectionNav = sectionItems.length > 1 && !isRegionLinkedPage;
@@ -124,7 +136,6 @@ export function CmsPage({
   const showFacebookSidebar = facebookFeeds.length === 1;
   const showFacebookGrid = facebookFeeds.length > 1;
   const showInlineFacebook = showFacebookSidebar;
-  const showRightRail = showRelatedNews;
   const bannerImageUrl = page.bannerImage?.asset ? urlFor(page.bannerImage).width(1800).fit("max").url() : null;
 
   return (
@@ -133,14 +144,6 @@ export function CmsPage({
         {showSectionNav ? (
           <div className={desktopLeftRailClass}>
             <SectionSubnav title={sectionNav?.label || sectionTitle} items={sectionItems} currentPath={currentPath} />
-          </div>
-        ) : null}
-
-        {showRightRail ? (
-          <div className={desktopRightRailClass}>
-            <div className="space-y-10">
-              {showRelatedNews ? <RelatedNewsSidebar heading={page.sidebarNewsHeading || "Latest News"} posts={relatedPosts} /> : null}
-            </div>
           </div>
         ) : null}
 
@@ -166,13 +169,9 @@ export function CmsPage({
             showPremLeagueTable={showPremLeagueTable}
             showFacebookGrid={showFacebookGrid}
             showInlineFacebook={showInlineFacebook}
+            relatedPosts={relatedPosts}
           />
-          {showRightRail ? (
-            <div className="mt-12 space-y-10 min-[1340px]:hidden">
-              {showRelatedNews ? <RelatedNewsSidebar heading={page.sidebarNewsHeading || "Latest News"} posts={relatedPosts} /> : null}
-            </div>
-          ) : null}
-        </div>
+          </div>
       </div>
     </section>
   );

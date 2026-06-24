@@ -1,8 +1,10 @@
 import {PortableText} from "@portabletext/react";
 import Link from "next/link";
+import Image from "next/image";
 import {SocialIcon} from "@/components/SocialIcon";
+import {urlFor} from "@/sanity/lib/image";
 import {getAllPages, getPosts, getSiteSettings} from "@/sanity/lib/queries";
-import type {NavLink, SitemapPage, SocialLink} from "@/sanity/lib/types";
+import type {NavLink, SitemapPage, SocialLink, Sponsor} from "@/sanity/lib/types";
 
 const fallbackLinks: NavLink[] = [
   {label: "Policies", href: "/resources/policies-procedures"},
@@ -62,6 +64,51 @@ function groupPagesBySection(pages: SitemapPage[]) {
       return acc;
     }, {})
   ).sort(([a], [b]) => order.indexOf(a) - order.indexOf(b));
+}
+
+function SponsorLogo({sponsor}: {sponsor: Sponsor}) {
+  const content = sponsor.logo?.asset ? (
+    <Image
+      src={urlFor(sponsor.logo).width(320).height(160).fit("max").url()}
+      alt={sponsor.logo.alt || sponsor.name}
+      width={160}
+      height={80}
+      className="h-14 w-auto object-contain sm:h-16"
+      unoptimized
+    />
+  ) : (
+    <span className="text-sm font-semibold uppercase tracking-[0.14em] text-white/88">{sponsor.name}</span>
+  );
+
+  if (!sponsor.href) {
+    return <div className="flex min-h-[4rem] items-center justify-center rounded bg-white px-4 py-3 shadow-[0_12px_28px_rgba(12,18,58,0.08)] ring-1 ring-northland-blue/10">{content}</div>;
+  }
+
+  return (
+    <a
+      href={sponsor.href}
+      target="_blank"
+      rel="noreferrer"
+      className="flex min-h-[4rem] items-center justify-center rounded bg-white px-4 py-3 shadow-[0_12px_28px_rgba(12,18,58,0.08)] ring-1 ring-northland-blue/10 transition hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(12,18,58,0.12)]"
+    >
+      {content}
+    </a>
+  );
+}
+
+function SponsorTier({title, sponsors}: {title: string; sponsors: Sponsor[]}) {
+  if (!sponsors.length) {
+    return null;
+  }
+
+  return (
+    <div className="space-y-4">
+      <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-northland-blue/60">{title}</h2>
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {sponsors.map((sponsor) => <SponsorLogo key={`${sponsor.tier}-${sponsor.name}`} sponsor={sponsor} />)}
+      </div>
+    </div>
+  );
 }
 
 export async function Footer() {
