@@ -6,18 +6,6 @@ import {urlFor} from "@/sanity/lib/image";
 import {getAllPages, getPosts, getSiteSettings} from "@/sanity/lib/queries";
 import type {NavLink, SitemapPage, SocialLink, Sponsor} from "@/sanity/lib/types";
 
-const fallbackLinks: NavLink[] = [
-  {label: "Policies", href: "/resources/policies-procedures"},
-  {label: "Site Map", href: "/resources/faqs"},
-  {label: "Contact Us", href: "/contact/key-contacts"}
-];
-
-const fallbackSocials: SocialLink[] = [
-  {label: "Email", href: "mailto:hello@northlandbasketball.org.nz"},
-  {label: "Facebook", href: "https://www.facebook.com/northlandbasketball"},
-  {label: "Instagram", href: "https://instagram.com"}
-];
-
 const northlandFacebookUrl = "https://www.facebook.com/northlandbasketball";
 
 function getSocialHref(social: SocialLink) {
@@ -113,31 +101,40 @@ function SponsorTier({title, sponsors}: {title: string; sponsors: Sponsor[]}) {
 
 export async function Footer() {
   const [settings, pages, posts] = await Promise.all([getSiteSettings(), getAllPages(), getPosts()]);
-  const footerLinks = settings?.footerLinks?.length ? settings.footerLinks : fallbackLinks;
-  const socials = settings?.socialLinks?.length ? settings.socialLinks : fallbackSocials;
+  const footerLinks = settings?.footerLinks || [];
+  const socials = settings?.socialLinks || [];
   const address = settings?.address?.length ? settings.address : fallbackAddress;
   const pageGroups = groupPagesBySection(pages);
   const latestPosts = posts.slice(0, 3);
+  const showFooterBar = socials.length > 0 || footerLinks.length > 0;
 
   return (
     <footer className="bg-northland-blue px-4 py-10 text-white sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-10">
-        <div className="flex items-center justify-center gap-3">
-          {socials.map((item) => {
-            const href = getSocialHref(item);
+        {showFooterBar ? (
+          <>
+            {socials.length ? (
+              <div className="flex items-center justify-center gap-3">
+                {socials.map((item) => {
+                  const href = getSocialHref(item);
 
-            return (
-              <a key={item.label} href={href} aria-label={item.label} className="text-white" target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
-                <SocialIcon label={item.label} />
-              </a>
-            );
-          })}
-        </div>
-        <nav aria-label="Footer" className="text-center text-sm uppercase tracking-[0.18em] text-white/92">
-          <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2">
-            {footerLinks.map((link) => <li key={link.label}><FooterLink link={link} /></li>)}
-          </ul>
-        </nav>
+                  return (
+                    <a key={item.label} href={href} aria-label={item.label} className="text-white" target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
+                      <SocialIcon label={item.label} />
+                    </a>
+                  );
+                })}
+              </div>
+            ) : null}
+            {footerLinks.length ? (
+              <nav aria-label="Footer" className="text-center text-sm uppercase tracking-[0.18em] text-white/92">
+                <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2">
+                  {footerLinks.map((link) => <li key={link.label}><FooterLink link={link} /></li>)}
+                </ul>
+              </nav>
+            ) : null}
+          </>
+        ) : null}
         <section aria-labelledby="footer-sitemap-title" className="grid gap-8 border-y border-white/12 py-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <div className="space-y-5">
             <div>
