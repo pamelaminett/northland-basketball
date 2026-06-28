@@ -17,7 +17,7 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   },
   socialLinks[]{label, href},
   footerLinks[]{label, href, openInNewTab},
-  sponsors[]{name, href, tier, logo{..., alt}},
+  sponsors[]{name, href, tier, logo{alt, asset->{url, originalFilename, mimeType}}},
   address
 }`;
 export const homePageQuery = groq`*[_type == "homePage"][0]{_id, title, heroHeading, regions[]{label, href}, heroImages[]{..., alt}, programmesHeading, programmesBody, programmeCards[]{title, href, featured}, premLeague{title, date, resultsDate, fixtureLabel, resultsLabel, fixtures[]{homeTeam, awayTeam, time, venue}, results[]{homeTeam, awayTeam, homeScore, awayScore, result, venue}}, statement, latestHeading}`;

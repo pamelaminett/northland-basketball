@@ -1,6 +1,5 @@
 import Image from "next/image";
 import {getSiteSettings} from "@/sanity/lib/queries";
-import {urlFor} from "@/sanity/lib/image";
 import type {Sponsor} from "@/sanity/lib/types";
 
 const fallbackSponsors: Sponsor[] = [
@@ -9,10 +8,12 @@ const fallbackSponsors: Sponsor[] = [
 ];
 
 function SponsorTile({sponsor}: {sponsor: Sponsor}) {
-  const content = sponsor.logo?.asset ? (
+  const logoSrc = sponsor.logo?.asset?.url;
+  const logoAlt = sponsor.logo?.alt || sponsor.name;
+  const content = logoSrc ? (
     <Image
-      src={urlFor(sponsor.logo).fit("max").url()}
-      alt={sponsor.logo.alt || sponsor.name}
+      src={logoSrc}
+      alt={logoAlt}
       width={640}
       height={400}
       sizes="100vw"

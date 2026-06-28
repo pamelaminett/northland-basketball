@@ -3,7 +3,14 @@ import type {Image, TypedObject} from "sanity";
 export type NavLink = { label: string; href?: string; openInNewTab?: boolean; children?: NavLink[]; };
 export type SocialLink = { label: string; href: string; };
 export type PortableTextBlock = TypedObject[];
-export type SanityImage = Image & { alt?: string; };
+export type SanityImage = Image & {
+  alt?: string;
+  asset?: Image["asset"] & {
+    url?: string;
+    originalFilename?: string;
+    mimeType?: string;
+  };
+};
 export type Sponsor = {
   name: string;
   href?: string;
