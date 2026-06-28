@@ -58,7 +58,7 @@ export async function Footer() {
             </ul>
           </nav>
         ) : null}
-        <section aria-labelledby="footer-sitemap-title" className="grid gap-8 border-y border-white/12 py-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <section aria-labelledby="footer-sitemap-title" className="grid gap-8 py-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <div className="space-y-5">
             <div>
               <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/60">Explore</p>
