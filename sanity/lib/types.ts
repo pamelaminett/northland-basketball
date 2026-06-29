@@ -19,10 +19,11 @@ export type Sponsor = {
 };
 export type HomePageRegion = { label: string; href?: string; };
 export type ProgrammeCardItem = { title: string; href?: string; featured?: boolean; };
-export type PremLeagueFixture = { homeTeam: string; awayTeam: string; time?: string; venue?: string; };
+export type PremLeagueFixture = { homeTeam: string; awayTeam: string; date?: string; time?: string; venue?: string; };
 export type PremLeagueResult = {
   homeTeam: string;
   awayTeam: string;
+  date?: string;
   homeScore?: string;
   awayScore?: string;
   result?: string;
@@ -30,6 +31,8 @@ export type PremLeagueResult = {
 };
 export type PremLeagueSection = {
   title?: string;
+  fixtureRound?: string;
+  resultsRound?: string;
   date?: string;
   resultsDate?: string;
   fixtureLabel?: string;

@@ -23,6 +23,8 @@ export const homePageType = defineType({
       type: "object",
       fields: [
         defineField({name: "title", title: "Section title", type: "string", initialValue: "Northland Prem League"}),
+        defineField({name: "fixtureRound", title: "Fixture round", type: "string", initialValue: "Round 5"}),
+        defineField({name: "resultsRound", title: "Results round", type: "string", initialValue: "Round 4"}),
         defineField({name: "date", title: "Schedule date", type: "date"}),
         defineField({name: "resultsDate", title: "Results date", type: "date"}),
         defineField({name: "fixtureLabel", title: "Fixture tab label", type: "string", initialValue: "Fixture"}),
@@ -49,6 +51,7 @@ export const homePageType = defineType({
                   components: {input: PremLeagueTeamSelect},
                   validation: (rule) => rule.required()
                 }),
+                defineField({name: "date", title: "Game date", type: "date"}),
                 defineField({name: "time", title: "Time", type: "string"}),
                 defineField({name: "venue", title: "Venue", type: "string"})
               ],
@@ -78,6 +81,7 @@ export const homePageType = defineType({
                   components: {input: PremLeagueTeamSelect},
                   validation: (rule) => rule.required()
                 }),
+                defineField({name: "date", title: "Game date", type: "date"}),
                 defineField({name: "homeScore", title: "Home score", type: "string"}),
                 defineField({name: "awayScore", title: "Away score", type: "string"}),
                 defineField({name: "venue", title: "Venue", type: "string"})
