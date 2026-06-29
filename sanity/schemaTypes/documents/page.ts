@@ -10,6 +10,46 @@ const sections = [
   {title: "Contact", value: "contact"}
 ];
 
+const richContentFields = [
+  defineArrayMember({type: "block"}),
+  defineArrayMember({type: "image", options: {hotspot: true}}),
+  defineArrayMember({
+    type: "object",
+    name: "youtubeEmbed",
+    title: "YouTube video",
+    fields: [
+      defineField({
+        name: "url",
+        title: "YouTube URL",
+        type: "url",
+        validation: (rule) =>
+          rule.required().uri({scheme: ["http", "https"]}).custom((value) => {
+            if (!value) {
+              return true;
+            }
+
+            return /(?:youtube\.com|youtu\.be)/i.test(value) ? true : "Enter a valid YouTube URL.";
+          })
+      }),
+      defineField({
+        name: "caption",
+        title: "Caption",
+        type: "string"
+      })
+    ],
+    preview: {
+      select: {
+        title: "caption",
+        subtitle: "url"
+      },
+      prepare: ({title, subtitle}) => ({
+        title: title || "YouTube video",
+        subtitle
+      })
+    }
+  })
+];
+
 export const pageType = defineType({
   name: "page",
   title: "Page",
@@ -112,7 +152,7 @@ export const pageType = defineType({
                       name: "body",
                       title: "Body",
                       type: "array",
-                      of: [defineArrayMember({type: "block"}), defineArrayMember({type: "image", options: {hotspot: true}})]
+                      of: richContentFields
                     })
                   ],
                   preview: {
@@ -147,7 +187,7 @@ export const pageType = defineType({
               name: "body",
               title: "Body",
               type: "array",
-              of: [defineArrayMember({type: "block"}), defineArrayMember({type: "image", options: {hotspot: true}})]
+              of: richContentFields
             })
           ],
           preview: {
@@ -162,7 +202,7 @@ export const pageType = defineType({
       name: "body",
       title: "Body",
       type: "array",
-      of: [defineArrayMember({type: "block"}), defineArrayMember({type: "image", options: {hotspot: true}})],
+      of: richContentFields,
       validation: (rule) => rule.required()
     })
   ],
