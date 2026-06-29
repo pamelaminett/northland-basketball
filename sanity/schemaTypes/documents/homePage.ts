@@ -101,16 +101,13 @@ export const homePageType = defineType({
               ],
               preview: {
                 select: {date: "date", homeTeam: "homeTeam", awayTeam: "awayTeam", homeScore: "homeScore", awayScore: "awayScore"},
-                prepare({date, homeTeam, awayTeam, homeScore, awayScore}) {
+                prepare({_date, homeTeam, awayTeam, homeScore, awayScore}) {
                   const scoreline =
                     homeScore || awayScore ? `${homeScore || "-"} - ${awayScore || "-"}` : "Score pending";
-                  const gameDate = date
-                    ? new Date(`${date}T12:00:00`).toLocaleDateString("en-NZ", {day: "numeric", month: "short"})
-                    : "Date TBC";
 
                   return {
                     title: `${homeTeam || "Home"} vs ${awayTeam || "Away"}`,
-                    subtitle: `${gameDate} • ${scoreline}`
+                    subtitle: scoreline
                   };
                 }
               }
