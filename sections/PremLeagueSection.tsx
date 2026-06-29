@@ -74,8 +74,8 @@ export function PremLeagueSection({homePage, showSidebar = true, compactTop = fa
   const premLeague = homePage?.premLeague;
   const fixtureLabel = premLeague?.fixtureLabel || "Fixture";
   const resultsLabel = premLeague?.resultsLabel || "Results";
-  const fixtureRound = premLeague?.fixtureRound || "Round 5";
-  const resultsRound = premLeague?.resultsRound || "Round 4";
+  const fixtureRound = premLeague?.fixtureRound?.trim();
+  const resultsRound = premLeague?.resultsRound?.trim();
   const [view, setView] = useState<"fixtures" | "results">("fixtures");
 
   const fixtures = useMemo(
@@ -97,7 +97,7 @@ export function PremLeagueSection({homePage, showSidebar = true, compactTop = fa
             : "bg-[#f3f3f7] text-northland-blue/75 hover:bg-[#ececf3]"
         }`}
       >
-        {fixtureLabel} {fixtureRound}
+        {fixtureRound ? `${fixtureLabel} ${fixtureRound}` : fixtureLabel}
       </button>
       <button
         type="button"
@@ -108,7 +108,7 @@ export function PremLeagueSection({homePage, showSidebar = true, compactTop = fa
             : "bg-[#f3f3f7] text-northland-blue/75 hover:bg-[#ececf3]"
         }`}
       >
-        {resultsLabel} {resultsRound}
+        {resultsRound ? `${resultsLabel} ${resultsRound}` : resultsLabel}
       </button>
     </div>
   );

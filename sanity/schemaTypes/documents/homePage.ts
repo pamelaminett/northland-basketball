@@ -23,8 +23,8 @@ export const homePageType = defineType({
       type: "object",
       fields: [
         defineField({name: "title", title: "Section title", type: "string", initialValue: "Northland Prem League"}),
-        defineField({name: "fixtureRound", title: "Fixture round", type: "string", initialValue: "Round 5"}),
-        defineField({name: "resultsRound", title: "Results round", type: "string", initialValue: "Round 4"}),
+        defineField({name: "fixtureRound", title: "Fixture round", type: "string"}),
+        defineField({name: "resultsRound", title: "Results round", type: "string"}),
         defineField({name: "date", title: "Schedule date", type: "date"}),
         defineField({name: "resultsDate", title: "Results date", type: "date"}),
         defineField({name: "fixtureLabel", title: "Fixture tab label", type: "string", initialValue: "Fixture"}),
