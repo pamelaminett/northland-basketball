@@ -37,6 +37,7 @@ export const homePageType = defineType({
             defineArrayMember({
               type: "object",
               fields: [
+                defineField({name: "date", title: "Game date", type: "date"}),
                 defineField({
                   name: "homeTeam",
                   title: "Home team",
@@ -51,11 +52,23 @@ export const homePageType = defineType({
                   components: {input: PremLeagueTeamSelect},
                   validation: (rule) => rule.required()
                 }),
-                defineField({name: "date", title: "Game date", type: "date"}),
                 defineField({name: "time", title: "Time", type: "string"}),
                 defineField({name: "venue", title: "Venue", type: "string"})
               ],
-              preview: {select: {title: "homeTeam", subtitle: "awayTeam"}}
+              preview: {
+                select: {date: "date", homeTeam: "homeTeam", awayTeam: "awayTeam", time: "time"},
+                prepare({date, homeTeam, awayTeam, time}) {
+                  const gameDate = date
+                    ? new Date(`${date}T12:00:00`).toLocaleDateString("en-NZ", {day: "numeric", month: "short"})
+                    : "Date TBC";
+                  const kickoff = time || "Time TBC";
+
+                  return {
+                    title: `${homeTeam || "Home"} vs ${awayTeam || "Away"}`,
+                    subtitle: `${gameDate} • ${kickoff}`
+                  };
+                }
+              }
             })
           ]
         }),
@@ -67,6 +80,7 @@ export const homePageType = defineType({
             defineArrayMember({
               type: "object",
               fields: [
+                defineField({name: "date", title: "Game date", type: "date"}),
                 defineField({
                   name: "homeTeam",
                   title: "Home team",
@@ -81,20 +95,22 @@ export const homePageType = defineType({
                   components: {input: PremLeagueTeamSelect},
                   validation: (rule) => rule.required()
                 }),
-                defineField({name: "date", title: "Game date", type: "date"}),
                 defineField({name: "homeScore", title: "Home score", type: "string"}),
                 defineField({name: "awayScore", title: "Away score", type: "string"}),
                 defineField({name: "venue", title: "Venue", type: "string"})
               ],
               preview: {
-                select: {homeTeam: "homeTeam", awayTeam: "awayTeam", homeScore: "homeScore", awayScore: "awayScore"},
-                prepare({homeTeam, awayTeam, homeScore, awayScore}) {
+                select: {date: "date", homeTeam: "homeTeam", awayTeam: "awayTeam", homeScore: "homeScore", awayScore: "awayScore"},
+                prepare({date, homeTeam, awayTeam, homeScore, awayScore}) {
                   const scoreline =
                     homeScore || awayScore ? `${homeScore || "-"} - ${awayScore || "-"}` : "Score pending";
+                  const gameDate = date
+                    ? new Date(`${date}T12:00:00`).toLocaleDateString("en-NZ", {day: "numeric", month: "short"})
+                    : "Date TBC";
 
                   return {
                     title: `${homeTeam || "Home"} vs ${awayTeam || "Away"}`,
-                    subtitle: scoreline
+                    subtitle: `${gameDate} • ${scoreline}`
                   };
                 }
               }

@@ -47,7 +47,7 @@ function formatGameDate(value?: string) {
   return new Intl.DateTimeFormat("en-NZ", {
     weekday: "short",
     day: "numeric",
-    month: "short"
+    month: "long"
   }).format(date);
 }
 
@@ -181,9 +181,8 @@ export function PremLeagueSection({homePage, showSidebar = true, compactTop = fa
               <div>
                 {tabs}
                 <div className="-mt-px overflow-hidden bg-white shadow-[0_18px_40px_rgba(12,18,58,0.08)] ring-1 ring-black/8">
-                  <div className="hidden grid-cols-[minmax(0,1.1fr)_minmax(5.5rem,0.7fr)_4.5rem_minmax(0,1.1fr)_4.5rem] gap-x-3 px-5 py-3 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-northland-blue/55 md:grid">
+                  <div className="hidden grid-cols-[minmax(0,1.25fr)_4.5rem_minmax(0,1.15fr)_4.5rem] gap-x-3 px-5 py-3 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-northland-blue/55 md:grid">
                     <span>Home</span>
-                    <span>Date</span>
                     <span className="text-center">Score</span>
                     <span>Away</span>
                     <span className="text-center">Score</span>
@@ -195,10 +194,9 @@ export function PremLeagueSection({homePage, showSidebar = true, compactTop = fa
                       return (
                         <div
                           key={`${result.homeTeam}-${result.awayTeam}-${homeScore}-${awayScore}`}
-                          className={`grid grid-cols-[minmax(0,1.1fr)_minmax(5.5rem,0.7fr)_4.5rem_minmax(0,1.1fr)_4.5rem] gap-x-3 px-5 py-3 text-[0.9rem] leading-6 text-northland-blue ${index % 2 === 0 ? "bg-white" : "bg-[#fbfbfe]"} ${index === results.length - 1 ? "" : "border-b border-black/6"}`}
+                          className={`grid grid-cols-[minmax(0,1.25fr)_4.5rem_minmax(0,1.15fr)_4.5rem] gap-x-3 px-5 py-3 text-[0.9rem] leading-6 text-northland-blue ${index % 2 === 0 ? "bg-white" : "bg-[#fbfbfe]"} ${index === results.length - 1 ? "" : "border-b border-black/6"}`}
                         >
                           <span className="font-medium">{result.homeTeam}</span>
-                          <span className="font-semibold text-black/72">{formatGameDate(result.date) || "-"}</span>
                           <span className="text-center font-semibold text-black/72">{homeScore}</span>
                           <span className="font-medium">{result.awayTeam}</span>
                           <span className="text-center font-semibold text-black/72">{awayScore}</span>
@@ -215,9 +213,6 @@ export function PremLeagueSection({homePage, showSidebar = true, compactTop = fa
                           key={`${result.homeTeam}-${result.awayTeam}-${homeScore}-${awayScore}-mobile`}
                           className="rounded-[4px] border border-black/8 bg-[#fbfbfe] p-4 text-northland-blue"
                         >
-                          <div className="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-northland-blue/70">
-                            {formatGameDate(result.date) || "Date TBC"}
-                          </div>
                           <div className="grid gap-3">
                             <div className="flex items-center justify-between gap-4">
                               <span className="font-medium">{result.homeTeam}</span>
