@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {SocialIcon} from "@/components/SocialIcon";
@@ -40,6 +40,21 @@ function renderLink(link: NavLink, className: string) {
 export function HeaderClient({headerLogoAlt, headerLogoUrl, navLinks, socials}: HeaderClientProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
+
+  useEffect(() => {
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, [menuOpen]);
 
   function toggleExpanded(label: string) {
     setExpandedItems((current) => (
@@ -126,68 +141,82 @@ export function HeaderClient({headerLogoAlt, headerLogoUrl, navLinks, socials}: 
           </div>
         </div>
 
-        <div id="mobile-primary-nav" className={`${menuOpen ? "absolute right-4 top-[calc(100%-0.25rem)] z-50 flex justify-end sm:right-6" : "hidden"} min-[1180px]:hidden`}>
-          <nav aria-label="Mobile primary" className="w-full max-w-[24rem] overflow-hidden border border-northland-blue/10 bg-white shadow-[0_20px_44px_rgba(9,13,43,0.12)]">
-            <div className="border-b border-northland-blue/10 bg-[#f5f7ff] px-4 py-3">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-northland-blue/55">Navigation</p>
-            </div>
-            <ul className="divide-y divide-northland-blue/8">
-              {navLinks.map((item) => {
-                const isExpanded = expandedItems.includes(item.label);
-                const hasChildren = Boolean(item.children?.length);
+        {menuOpen ? (
+          <div
+            id="mobile-primary-nav"
+            className="fixed inset-0 z-50 min-[1180px]:hidden"
+            onClick={closeMenu}
+            aria-hidden="true"
+          >
+            <div className="absolute inset-0 bg-transparent" />
+            <div className="absolute right-4 top-[calc(100px+0.75rem)] flex justify-end sm:right-6">
+              <nav
+                aria-label="Mobile primary"
+                className="flex max-h-[calc(100vh-7rem)] w-full max-w-[24rem] flex-col overflow-hidden border border-northland-blue/10 bg-white shadow-[0_20px_44px_rgba(9,13,43,0.12)] overscroll-contain"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <div className="border-b border-northland-blue/10 bg-[#f5f7ff] px-4 py-3">
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-northland-blue/55">Navigation</p>
+                </div>
+                <ul className="divide-y divide-northland-blue/8 overflow-y-auto overscroll-contain">
+                  {navLinks.map((item) => {
+                    const isExpanded = expandedItems.includes(item.label);
+                    const hasChildren = Boolean(item.children?.length);
 
-                return (
-                  <li key={item.label}>
-                    <div className={`px-4 py-4 transition ${isExpanded ? "bg-[#f7f8fe]" : "bg-white"}`}>
-                      {hasChildren ? (
-                        <button
-                          type="button"
-                          onClick={() => toggleExpanded(item.label)}
-                          aria-expanded={isExpanded}
-                          className="flex w-full items-center justify-between gap-3 text-left"
-                        >
-                          <span className="block min-w-0 flex-1 text-[0.92rem] font-semibold uppercase tracking-[0.16em] text-northland-blue">
-                            {item.label}
-                          </span>
-                          <span className={`text-sm text-northland-blue transition ${isExpanded ? "rotate-45" : ""}`}>+</span>
-                        </button>
-                      ) : item.href ? (
-                        renderLink(item, "block text-[0.92rem] font-semibold uppercase tracking-[0.16em] text-northland-blue")
-                      ) : (
-                        <span className="block text-[0.92rem] font-semibold uppercase tracking-[0.16em] text-northland-blue">{item.label}</span>
-                      )}
-                    </div>
-                    {hasChildren && isExpanded ? (
-                      <div className="border-t border-northland-blue/10 bg-[#eef2ff] px-4 py-3">
-                        <ul className="space-y-3 border-l border-northland-blue/20 pl-4">
-                          {item.children?.map((child) => (
-                            <li key={`${item.label}-${child.label}`}>
-                              {renderLink(child, "block text-[0.94rem] font-medium leading-6 text-[#18206f] transition hover:text-[#101652]")}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                  </li>
-                );
-              })}
-            </ul>
-            <div className="flex items-center justify-between gap-3 border-t border-northland-blue/10 bg-[#f5f7ff] px-4 py-4">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-northland-blue/55">Follow</p>
-              <div className="flex items-center gap-3">
-              {socials.map((social) => {
-                const href = getSocialHref(social);
+                    return (
+                      <li key={item.label}>
+                        <div className={`px-4 py-4 transition ${isExpanded ? "bg-[#f7f8fe]" : "bg-white"}`}>
+                          {hasChildren ? (
+                            <button
+                              type="button"
+                              onClick={() => toggleExpanded(item.label)}
+                              aria-expanded={isExpanded}
+                              className="flex w-full items-center justify-between gap-3 text-left"
+                            >
+                              <span className="block min-w-0 flex-1 text-[0.92rem] font-semibold uppercase tracking-[0.16em] text-northland-blue">
+                                {item.label}
+                              </span>
+                              <span className={`text-sm text-northland-blue transition ${isExpanded ? "rotate-45" : ""}`}>+</span>
+                            </button>
+                          ) : item.href ? (
+                            renderLink(item, "block text-[0.92rem] font-semibold uppercase tracking-[0.16em] text-northland-blue")
+                          ) : (
+                            <span className="block text-[0.92rem] font-semibold uppercase tracking-[0.16em] text-northland-blue">{item.label}</span>
+                          )}
+                        </div>
+                        {hasChildren && isExpanded ? (
+                          <div className="border-t border-northland-blue/10 bg-[#eef2ff] px-4 py-3">
+                            <ul className="space-y-3 border-l border-northland-blue/20 pl-4">
+                              {item.children?.map((child) => (
+                                <li key={`${item.label}-${child.label}`}>
+                                  {renderLink(child, "block text-[0.94rem] font-medium leading-6 text-[#18206f] transition hover:text-[#101652]")}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="flex items-center justify-between gap-3 border-t border-northland-blue/10 bg-[#f5f7ff] px-4 py-4">
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-northland-blue/55">Follow</p>
+                  <div className="flex items-center gap-3">
+                    {socials.map((social) => {
+                      const href = getSocialHref(social);
 
-                return (
-                  <a key={social.label} href={href} aria-label={social.label} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
-                    <SocialIcon label={social.label} />
-                  </a>
-                );
-              })}
-              </div>
+                      return (
+                        <a key={social.label} href={href} aria-label={social.label} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
+                          <SocialIcon label={social.label} />
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </nav>
             </div>
-          </nav>
-        </div>
+          </div>
+        ) : null}
       </div>
     </header>
   );
