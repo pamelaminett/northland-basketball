@@ -113,6 +113,45 @@ export const homePageType = defineType({
               }
             })
           ]
+        }),
+        defineField({name: "livestreamHeading", title: "Livestream heading", type: "string", initialValue: "Watch Live"}),
+        defineField({
+          name: "livestreams",
+          title: "Livestreams",
+          type: "array",
+          of: [
+            defineArrayMember({
+              type: "object",
+              fields: [
+                defineField({name: "title", title: "Match title", type: "string", validation: (rule) => rule.required()}),
+                defineField({
+                  name: "url",
+                  title: "YouTube URL",
+                  type: "url",
+                  validation: (rule) =>
+                    rule.required().uri({scheme: ["http", "https"]}).custom((value) => {
+                      if (!value) {
+                        return true;
+                      }
+
+                      return value.includes("youtube.com") || value.includes("youtu.be")
+                        ? true
+                        : "Use a YouTube watch, share, or embed URL.";
+                    })
+                }),
+                defineField({name: "note", title: "Short note", type: "string"})
+              ],
+              preview: {
+                select: {title: "title", subtitle: "note"},
+                prepare({title, subtitle}) {
+                  return {
+                    title: title || "Livestream",
+                    subtitle: subtitle || "YouTube link"
+                  };
+                }
+              }
+            })
+          ]
         })
       ]
     }),

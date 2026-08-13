@@ -29,6 +29,11 @@ export type PremLeagueResult = {
   result?: string;
   venue?: string;
 };
+export type PremLeagueLivestream = {
+  title: string;
+  url: string;
+  note?: string;
+};
 export type PremLeagueSection = {
   title?: string;
   fixtureRound?: string;
@@ -39,6 +44,8 @@ export type PremLeagueSection = {
   resultsLabel?: string;
   fixtures?: PremLeagueFixture[];
   results?: PremLeagueResult[];
+  livestreamHeading?: string;
+  livestreams?: PremLeagueLivestream[];
 };
 export type PageDownload = {
   title: string;

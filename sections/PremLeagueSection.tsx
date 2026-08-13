@@ -70,6 +70,29 @@ function getResultScores(result: PremLeagueResult) {
   };
 }
 
+function getYouTubeEmbedUrl(url?: string) {
+  if (!url) {
+    return null;
+  }
+
+  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
+  if (shortMatch) {
+    return `https://www.youtube.com/embed/${shortMatch[1]}`;
+  }
+
+  const watchMatch = url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+  if (watchMatch) {
+    return `https://www.youtube.com/embed/${watchMatch[1]}`;
+  }
+
+  const embedMatch = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/);
+  if (embedMatch) {
+    return `https://www.youtube.com/embed/${embedMatch[1]}`;
+  }
+
+  return null;
+}
+
 export function PremLeagueSection({homePage, showSidebar = true, compactTop = false}: {homePage?: HomePageDocument | null; showSidebar?: boolean; compactTop?: boolean}) {
   const premLeague = homePage?.premLeague;
   const fixtureLabel = premLeague?.fixtureLabel || "Fixture";
@@ -85,6 +108,10 @@ export function PremLeagueSection({homePage, showSidebar = true, compactTop = fa
   const results = useMemo(
     () => (premLeague?.results?.length ? premLeague.results : fallbackResults),
     [premLeague?.results]
+  );
+  const livestreams = useMemo(
+    () => (premLeague?.livestreams || []).map((stream) => ({...stream, embedUrl: getYouTubeEmbedUrl(stream.url)})).filter((stream) => stream.embedUrl),
+    [premLeague?.livestreams]
   );
   const tabs = (
     <div className="flex items-end gap-0">
@@ -230,6 +257,40 @@ export function PremLeagueSection({homePage, showSidebar = true, compactTop = fa
                 </div>
               </div>
             )}
+
+            {livestreams.length ? (
+              <section className="mt-8">
+                <div className="mb-5 flex items-center gap-4">
+                  <h3 className="text-2xl font-medium tracking-[0.06em] text-[#202020]">
+                    {premLeague?.livestreamHeading || "Watch Live"}
+                  </h3>
+                  <div className="h-px flex-1 bg-black/45" aria-hidden="true" />
+                </div>
+                <div className="grid gap-5 md:grid-cols-2">
+                  {livestreams.map((stream) => (
+                    <article
+                      key={`${stream.title}-${stream.url}`}
+                      className="overflow-hidden bg-white shadow-[0_18px_40px_rgba(12,18,58,0.08)] ring-1 ring-black/8"
+                    >
+                      <div className="relative aspect-video">
+                        <iframe
+                          src={stream.embedUrl || undefined}
+                          title={stream.title}
+                          className="absolute inset-0 h-full w-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                        />
+                      </div>
+                      <div className="px-5 py-4">
+                        <h4 className="text-lg font-semibold text-northland-blue">{stream.title}</h4>
+                        {stream.note ? <p className="mt-2 text-sm leading-6 text-black/68">{stream.note}</p> : null}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ) : null}
           </div>
 
           {showSidebar ? <FacebookFeedPanel /> : null}
